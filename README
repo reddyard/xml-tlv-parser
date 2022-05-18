@@ -1,0 +1,24 @@
+Simple xml-tlv parser
+
+The project is based on Eli Cohen's solution (https://github.com/echoline/echsml) - thanks for a lightweight xml-parser that doesn't require additional libraries to be installed.
+To build, just use ./make.
+Once built, the parser test is run with ./test test.xml (please place test.xml at the root of the project).
+
+
+The tag of each XML node shows the type of data. XML consist of one root element with some child elements. There are two types of data allowed: numeric or text.
+
+
+Input file example:
+ 
+<START>
+	<text>string 1</text>
+	<text>string 2</text>
+	<text>string 3</text>
+	<numeric>205011</numeric>
+	<numeric>7</numeric>
+</START>
+
+Output TLV File fields:
+
+1  byte - data field type (0x0c for str and 0x0d for num),
+1 byte - data field length in bytes, and data field whose size depends on the contents of the xml-tag
